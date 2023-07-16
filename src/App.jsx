@@ -5,11 +5,11 @@ import StylingLogo from './StylingLogo';
 function App() {
   return (
     <>
-      <Dashboard />
-      {/* <div className="bg-slate-100">
+      {/* <Dashboard /> */}
+      <div className="bg-slate-100">
         <StylingLogo />
         <FormValidation />
-      </div> */}
+      </div>
     </>
   );
 }

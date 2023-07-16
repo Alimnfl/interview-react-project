@@ -6,7 +6,7 @@ function FormValidation() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const validateForm = (event) => {
+  const validateForm = async (event) => {
     event.preventDefault();
 
     if (!email) {
@@ -23,6 +23,30 @@ function FormValidation() {
       setPasswordError('Password harus memiliki setidaknya 8 karakter');
     } else {
       setPasswordError('');
+    }
+
+    try {
+      const response = await fetch('https://next-backend-example.vercel.app/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer AowhcxMxFzwjrUV7nHpBcahKasozheYUmL6izefZds6ibz1XlmY6TsOWRBeOXqJY',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'OPTION,POST,GET',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+      if (response.ok) {
+        console.log('Autentikasi sukses');
+      } else {
+        console.log('Failed');
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
